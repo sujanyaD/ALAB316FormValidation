@@ -69,7 +69,8 @@ function validateForm() {
 
   // Validate password match
   if (password !== passwordCheck) {
-      alert("Passwords do not match.");
+    error.innerHTML="Passwords do not match.";
+    error.style.display="block";
       return false;
   }
 
