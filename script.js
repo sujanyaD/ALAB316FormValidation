@@ -50,16 +50,20 @@ function validateForm() {
 
   // Validate password
   if (password === "") {
-      alert("Please enter a password.");
+    error.innerHTML="Please enter a password.";
+    error.style.display="block";
       return false;
   } else if (password.length < 12) {
-      alert("Password must be at least 12 characters long.");
+    error.innerHTML="Password must be at least 12 characters long.";
+    error.style.display="block";
       return false;
   } else if (!/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/\d/.test(password) || !/[^a-zA-Z0-9]/.test(password)) {
-      alert("Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.");
+    error.innerHTML="Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.";
+    error.style.display="block";
       return false;
   } else if (/password/i.test(password)) {
-      alert("Password cannot contain the word 'password'.");
+    error.innerHTML="Password cannot contain the word 'password'.";
+    error.style.display="block";
       return false;
   }
 
