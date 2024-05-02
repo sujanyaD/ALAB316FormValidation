@@ -25,16 +25,16 @@
         <input name="email" id="emailReg" type="text" placeholder="Email" />
         <span class="input-icon"><i class="fa-solid fa-envelope"></i></span><br />
 
-        <input name="password" id="pwd" type="text" placeholder="Password" />
+        <input name="password" id="pwd" type="password" placeholder="Password" />
         <span class="input-icon"><i class="fa-solid fa-key"></i></span><br />
 
-        <input name="passwordCheck" id="pwdchk" type="text" placeholder="Repeat Password" />
+        <input name="passwordCheck" id="pwdchk" type="password" placeholder="Repeat Password" />
         <span class="input-icon"><i class="fa-solid fa-key"></i></span><br /><br />
 
         <div class="flex-row">
           <input name="terms" type="checkbox" />
           <label for="terms">I agree to the&nbsp;<a href="#">Terms of Use</a>.</label>
-          <input type="submit" id="submitForm" value="Register" onclick="validateForm()" />
+          <input type="submit"  id="Register" />
         </div>
       </form>
     </div>
@@ -46,16 +46,16 @@
 
       <!-- Login Form -->
       <form id="login" style="border-bottom: 1px solid lightgray;">
-        <input name="username" type="text" placeholder="Username" />
+        <input name="username" id="loginusername" type="text" placeholder="Username" />
         <span class="input-icon"><i class="fa-solid fa-user"></i></span><br />
 
-        <input name="password" type="text" placeholder="Password" />
+        <input name="password" id="loginpwd" type="password" placeholder="Password" />
         <span class="input-icon"><i class="fa-solid fa-key"></i></span><br /><br />
 
         <div class="flex-row">
           <input name="persist" type="checkbox" />
           <label for="persist">Keep me logged in.</label>
-          <input type="submit" value="Login" />
+          <input type="submit" value="Login" onclick="loginform()" />
         </div>
         <br /><br />
       </form>

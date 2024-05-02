@@ -1,39 +1,50 @@
 
 //document.addEventListener("DOMContentLoaded", function() {
 // const registrationForm = document.getElementById("registration");
-
-// registrationForm.addEventListener("submit", function (event) {
-//   event.preventDefault();
+registration.addEventListener("submit",  (event) => {
+   event.preventDefault();
+   validateForm();
+ });
 
 function validateForm() {
+
   // Get the values of the form fields
   let username = document.getElementById("usernm").value.trim();
   let email = document.getElementById("emailReg").value.trim();
   let password = document.getElementById("pwd").value.trim();
   let passwordCheck = document.getElementById("pwdchk").value.trim();
   let termsAccepted = document.querySelector('input[name="terms"]').checked;
+  let error= document.getElementById('errorDisplay');
 
   // Validate username
   if (username === "") {
-      alert("Please enter a username.");
-      return false;
+      // alert("Please enter a username.");
+      error.innerHTML="Please enter a username.";
+      error.style.display="block";
+      
+     return ;
   } else if (username.length < 4) {
-      alert("Username must be at least 4 characters long.");
+    error.innerHTML="Username must be at least 4 characters long.";
+      error.style.display="block";
       return false;
   } else if (!/^\w{4,}$/.test(username)) {
-      alert("Username cannot contain special characters or whitespace.");
+      error.innerHTML="Username cannot contain special characters or whitespace.";
+      error.style.display="block";
       return false;
   }
 
   // Validate email
   if (email === "") {
-      alert("Please enter an email address.");
+    error.innerHTML="Please enter an email address.";
+    error.style.display="block";
       return false;
   } else if (!isValidEmail(email)) {
-      alert("Please enter a valid email address.");
+      error.innerHTML="Please enter a valid email address.";
+      error.style.display="block";
       return false;
   } else if (email.endsWith("@example.com")) {
-      alert("Email domain 'example.com' is not allowed.");
+     error.innerHTML="Email domain 'example.com' is not allowed.";
+     error.style.display="block";
       return false;
   }
 
@@ -66,6 +77,12 @@ function validateForm() {
 
   // If all validations pass, the form is valid
   alert("Registration successful!");
+  //localStorage.setItem("username",username)
+  addUsernamestolocalstorage("username",username)
+  // localStorage.setItem("email",email)
+  // localStorage.setItem("password",password)
+
+
   return true;
 }
 
@@ -74,3 +91,29 @@ function isValidEmail(email) {
   let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
+
+function loginform()
+{
+  let usernm = document.getElementById("loginusername").value.trim();
+  if (usernm === "") {
+    alert("Please enter username.");
+    return false;
+  }
+  let existingEntries = JSON.parse(localStorage.getItem("allEntries"));
+  if(!existingEntries.includes(usernm))
+  alert("username does not exist in localstorage");
+  return false;
+
+}
+function addUsernamestolocalstorage(storagename,storageval) {
+  // Parse any JSON previously stored in allEntries
+  var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
+  if(existingEntries == null) existingEntries = [];
+  var entry = {
+    storagename: storageval,
+  };
+  //localStorage.setItem("entry", JSON.stringify(entry));
+  // Save allEntries back to local storage
+  existingEntries.push(entry);
+  localStorage.setItem("allEntries", JSON.stringify(existingEntries));
+};
